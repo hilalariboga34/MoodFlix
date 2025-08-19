@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>💖 Favori Filmlerin</h1>
+
+{% if movies %}
+    {% for movie in movies %}
+        <div style="margin-bottom: 20px;">
+            <h3>{{ movie.title }}</h3>
+            <img src="https://image.tmdb.org/t/p/w200{{ movie.poster_path }}" alt="{{ movie.title }} afişi">
+            <p><strong>Puan:</strong> {{ movie.vote_average }}</p>
+            <p><strong>Yıl:</strong> {{ movie.release_date[:4] }}</p>
+            <a href="/movie/{{ movie.id }}">Detaylar →</a>
+
+            <form action="{{ url_for('remove_favorite', movie_id=movie.id) }}" method="POST">
+                <button type="submit">🗑 Favorilerden Kaldır</button>
+            </form>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Hiç favori film eklenmemiş.</p>
+{% endif %}
+
+<a href="{{ url_for('recommend') }}">← Geri dön</a>
+{% endblock %}

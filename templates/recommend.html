@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Bugün Nasılsın? - MoodFlix{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <div class="form-card">
+        <h1>Bugün Nasılsın?</h1>
+        <form method="POST">
+            <div class="form-group">
+                <textarea name="user_input" rows="4" placeholder="Bugünkü ruh halini veya ne izlemek istediğini yaz..." required></textarea>
+            </div>
+            <button type="submit" class="form-btn">🎬 Öner</button>
+        </form>
+        {% if error %}
+            <p class="error">{{ error|safe }}</p>
+        {% endif %}
+    </div>
+</div>
+
+{% if top_movie %}
+<div class="top-movie-section">
+    <h2>🎬 Ruh Haline En Uygun Film</h2>
+    <div class="top-movie-card">
+        <img src="https://image.tmdb.org/t/p/w500{{ top_movie.poster_path }}" alt="{{ top_movie.title }}">
+        <div class="top-movie-info">
+            <h3>{{ top_movie.title }}</h3>
+            <p><strong>📅</strong> {{ top_movie.release_date[:4] }}</p>
+            <p><strong>⭐</strong> {{ top_movie.vote_average }}</p>
+            <p>{{ top_movie.overview }}</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if other_movies %}
+<div class="slider-section">
+    <h2>📽️ Diğer Önerilenler</h2>
+    <div class="slider-container auto-scroll">
+        {% for movie in other_movies %}
+        <div class="slider-card">
+            <a href="{{ url_for('movie_detail', movie_id=movie.id) }}">
+                <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="{{ movie.title }}">
+                <p>{{ movie.title }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

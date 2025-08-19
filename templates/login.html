@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Giriş Yap - MoodFlix{% endblock %}
+
+{% block content %}
+<div class="form-page">
+  <div class="form-card">
+    <h1>Giriş Yap</h1>
+    <p class="motto">Ruh haline en uygun film burada başlar.</p>
+
+    <form method="POST">
+      <div class="form-group">
+        <input type="text" name="username" required>
+        <label>Kullanıcı Adı</label>
+      </div>
+
+      <div class="form-group">
+        <input type="password" name="password" required>
+        <label>Şifre</label>
+      </div>
+
+      <button type="submit" class="form-btn">Giriş Yap</button>
+
+      <div class="links">
+        <a href="/register">Kayıt Ol</a>
+        <a href="/forgot-password">Şifremi Unuttum</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

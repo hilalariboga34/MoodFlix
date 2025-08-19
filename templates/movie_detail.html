@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ movie.title }}</h2>
+
+{% if movie.poster_path %}
+    <img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" alt="{{ movie.title }}">
+{% endif %}
+
+<p>⭐ <strong>Puan:</strong> {{ movie.vote_average }}</p>
+<p>📅 <strong>Yıl:</strong> {{ movie.release_date[:4] if movie.release_date }}</p>
+<p>📝 <strong>Açıklama:</strong> {{ movie.overview or "Açıklama bulunamadı." }}</p>
+<p><strong>Süre:</strong> {{ movie.runtime }} dakika</p>
+<p>🎞️ <strong>Türler:</strong>
+    {% for genre in movie.genres %}
+        {{ genre.name }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+</p>
+
+{% if movie.credits and movie.credits.cast %}
+    <p>🎭 <strong>Oyuncular:</strong>
+        {% for actor in movie.credits.cast[:5] %}
+            {{ actor.name }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+{% endif %}
+
+{% if platforms %}
+    <p><strong>İzleyebileceğin Platformlar:</strong></p>
+    <ul>
+        {% for p in platforms %}
+            <li>{{ p.provider_name }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p><em>Platform bilgisi bulunamadı.</em></p>
+{% endif %}
+
+
+<form action="{{ url_for('add_favorite', movie_id=movie.id) }}" method="POST">
+    <button type="submit">💖 Favorilere Ekle</button>
+</form>
+
+<hr>
+<h3>💬 Yorum Ekle:</h3>
+<form method="POST" action="{{ url_for('movie_detail', movie_id=movie.id) }}">
+    <textarea name="comment_text" rows="4" cols="50" placeholder="Yorumunuzu yazın..." required></textarea><br>
+    <button type="submit">Gönder</button>
+</form>
+
+{% if comments %}
+    <hr>
+    <h3>📢 Kullanıcı Yorumları:</h3>
+    {% for comment in comments %}
+        <p><strong>{{ comment.username }}</strong> ({{ comment.created_at }}): {{ comment.comment_text }}</p>
+    {% endfor %}
+{% else %}
+    <p>Henüz yorum yok.</p>
+{% endif %}
+
+{% if not is_favorite %}
+    <form action="{{ url_for('add_favorite', movie_id=movie.id) }}" method="POST">
+        <button type="submit">💖 Favorilere Ekle</button>
+    </form>
+{% else %}
+    <p>✅ Bu film favorilerinde.</p>
+{% endif %}
+
+
+<a href="{{ url_for('recommend') }}">← Geri dön</a>
+{% endblock %}

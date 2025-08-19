@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Geçmiş Öneriler - MoodFlix{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>📜 Geçmiş Film Önerilerin</h2>
+
+    {% if grouped_data %}
+        {% for question, movies in grouped_data.items() %}
+        <div class="accordion-block">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+                👉 "{{ question }}"
+            </button>
+            <div class="accordion-body" style="display: none;">
+                <ul>
+                    {% for movie in movies %}
+                    <li>
+                        <strong>🎬 Önerilen Film:</strong>
+                        <a href="{{ url_for('movie_detail', movie_id=movie.id) }}">{{ movie.title }}</a><br>
+                        <small><em>{{ movie.timestamp }}</em></small>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Henüz hiç öneri geçmişin yok.</p>
+    {% endif %}
+</div>
+
+<script>
+    function toggleAccordion(button) {
+        const content = button.nextElementSibling;
+
+        // Diğer tüm açıkları kapat
+        document.querySelectorAll('.accordion-body').forEach(el => {
+            if (el !== content) el.style.display = 'none';
+        });
+
+        // Bu aç/kapat
+        content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+    }
+</script>
+{% endblock %}

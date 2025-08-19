@@ -1,0 +1,391 @@
+/* ------------------ Genel Gövde ------------------ */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0e6e5e;  /* Deep Harbor */
+    color: #DCDFD6;             /* Driftwood Sand */
+}
+
+/* ------------------ Header & Navigation ------------------ */
+header {
+    background-color: #7C8C76;  /* Misty Pine */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #DCDFD6;
+}
+
+nav a {
+    margin: 0 15px;
+    color: #DCDFD6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #6db0c6;  /* Sea Salt Sage */
+}
+
+/* ------------------ Flash Mesajları ------------------ */
+.flash {
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+    max-width: 600px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.flash.success { background-color: #28a745; color: white; }
+.flash.danger  { background-color: #dc3545; color: white; }
+.flash.info    { background-color: #3b808b; color: white; }
+.flash.warning { background-color: #ffc107; color: black; }
+
+/* ------------------ Form Sayfası Ortak Stil ------------------ */
+.form-page {
+    min-height: 100vh;
+    background: linear-gradient(to right, #87D9D1, #267974);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.form-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    padding: 2.5rem;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.form-card h1 {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* ------------------ Form Elemanları ------------------ */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.form-group label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    transition: 0.3s ease;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0 0.3rem;
+    border-radius: 4px;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.6);
+    color: #35918b;
+}
+
+/* ------------------ Butonlar ------------------ */
+.form-btn, button {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #7C8C76, #87D9D1);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-btn:hover, button:hover {
+    background: #DCDFD6;
+    color: #2f928b;
+}
+
+/* ------------------ Form Bağlantıları ------------------ */
+.links {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.links a {
+    color: #DCDFD6;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* ------------------ Hata Mesajları ------------------ */
+.error {
+    color: #000000;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* ------------------ Öneriler, Kartlar, Detaylar, Geçmiş ------------------ */
+/* (Bu kısımda daha önceki kart yapıları ve öneriler bölümü vardı.
+   Gerekirse onları da optimize edebilirim, ancak bu mesajda form teması odaklı temizlendi.) */
+
+/* ------------------ Animasyon ------------------ */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-page {
+  min-height: 100vh;
+  background: linear-gradient(to right, #7C8C76, #2a8b84);  /* Arka plan güncellendi */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.form-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(25px);
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.form-card h1 {
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
+.motto {
+  text-align: center;
+  color: #DCDFD6;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  font-style: italic;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  transition: 0.3s ease;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0 0.3rem;
+  border-radius: 4px;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+  top: -8px;
+  left: 12px;
+  font-size: 0.8rem;
+  color: #DCDFD6;
+}
+
+.form-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #7C8C76, #87D9D1);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-btn:hover {
+  background: #DCDFD6;
+  color: #134340;
+}
+
+.links {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+.links a {
+  color: #DCDFD6;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin: 0 10px;
+}
+
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #DCDFD6, #87D9D1); /* Yeni renkler */
+    animation: fadeIn 1s ease;
+}
+.login-box {
+    background-color: rgba(255, 255, 255, 0.2);  /* biraz daha opak */
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+}
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #7C8C76, #87D9D1);  /* yeşilimsi degrade */
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+    background-color: #DCDFD6;
+    color: #134340;
+}
+
+.auto-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  animation: scrollSlider 20s linear infinite;
+}
+
+@keyframes scrollSlider {
+  0% { scroll-left: 0; }
+  100% { scroll-left: 100%; }
+}
+
+a {
+  color: #f8dacd; /* yumuşak kahve / bej uyumlu bir ton */
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #8a817c;
+}
+
+.accordion-block {
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: #f2e8da;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.accordion-header {
+    background-color: #ded1bb;
+    color: #333;
+    padding: 12px 18px;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #50a4a0;
+}
+
+.accordion-body {
+    padding: 10px 20px;
+    background-color: #55a298;
+    border-top: 1px solid #ddd0b7;
+}
+
+.accordion-body ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.accordion-body li {
+    margin-bottom: 10px;
+}
+
+.accordion-body a {
+    color: #a0593b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.accordion-body a:hover {
+    text-decoration: underline;
+    color: #6c4030;
+}
+
+
+a.movie-link {
+  color: #b25d3a !important; /* bej temaya uygun kahve tonu */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a.movie-link:hover {
+  color: #8a817c !important;
+  text-decoration: underline;
+}
+

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Kayıt Ol - MoodFlix{% endblock %}
+
+{% block content %}
+<div class="form-page">
+  <div class="form-card">
+    <h1>Kayıt Ol</h1>
+    <form method="POST">
+      <div class="form-group">
+        <input type="text" name="username" required>
+        <label>Kullanıcı Adı</label>
+      </div>
+
+      <div class="form-group">
+        <input type="email" name="email" required>
+        <label>E-posta</label>
+      </div>
+
+      <div class="form-group">
+        <input type="password" name="password" required>
+        <label>Şifre</label>
+      </div>
+
+      <button type="submit" class="form-btn">Kayıt Ol</button>
+
+      <div class="links">
+        <a href="{{ url_for('login') }}">Zaten hesabın var mı? Giriş Yap</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

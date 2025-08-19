@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}MoodFlix{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>MoodFlix</h1>
+        <nav>
+            {% if session.get("user_id") %}
+                👤 {{ session["username"] }}
+                <a href="{{ url_for('recommend') }}">🎬 Öneriler</a>
+                <a href="{{ url_for('favorites') }}">💖 Favoriler</a>
+                <a href="{{ url_for('history') }}">📜 Geçmiş</a>
+                <a href="{{ url_for('logout') }}">🚪 Çıkış Yap</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">🔐 Giriş Yap</a>
+                <a href="{{ url_for('register') }}">📝 Kaydol</a>
+                <a href="{{ url_for('forgot_password') }}">🔑 Şifremi Unuttum</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggles = document.querySelectorAll(".accordion-toggle");
+    toggles.forEach(toggle => {
+      toggle.addEventListener("click", () => {
+        const content = toggle.nextElementSibling;
+        content.style.display = (content.style.display === "block") ? "none" : "block";
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
+ 
